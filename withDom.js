@@ -13,6 +13,10 @@ if (!global.document) {
     global.navigator = {
       userAgent: 'node.js',
     };
+    global.requestAnimationFrame = global.window.requestAnimationFrame ||
+      function requestAnimationFramePolyfill(callback) {
+        return setTimeout(callback, 0);
+      };
   } catch (e) {
     // jsdom is not supported...
     if (e.message === "Cannot find module 'jsdom'") {
